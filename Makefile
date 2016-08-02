@@ -1,12 +1,13 @@
 test: lint
 	@echo "--> Running Python tests"
-	/srv/lambda/venv/bin/py.test tests || exit 1
+	./venv/bin/py.test tests || exit 1
 	@echo ""
 
 develop:
 	@echo "--> Installing dependencies"
-	pip install -r requirements.txt
-	pip install "file://`pwd`#egg=awseipext[tests]"
+	virtualenv venv
+	./venv/bin/pip install -r requirements.txt
+	./venv/bin/pip install "file://`pwd`#egg=awseipext[tests]"
 	@echo ""
 
 dev-docs:
@@ -15,23 +16,23 @@ dev-docs:
 clean:
 	@echo "--> Cleaning pyc files"
 	find . -name "*.pyc" -delete
-	rm -rf ./publish ./htmlcov ./awseipext.egg-info
+	rm -rf ./publish ./htmlcov ./awseipext.egg-info ./venv
 	@echo ""
 
 lint:
 	@echo "--> Linting Python files"
-	PYFLAKES_NODOCTEST=1 /srv/lambda/venv/bin/flake8 awseipext
+	PYFLAKES_NODOCTEST=1 ./venv/bin/flake8 awseipext
 	@echo ""
 
 coverage:
-	coverage run --branch --source=awseipext -m py.test tests
-	coverage html
+	./venv/bin/coverage run --branch --source=awseipext -m py.test tests
+	./venv/bin/coverage html
 
-publish: clean
+publish: clean develop
 	# Ensure directory exists
 	mkdir -p ./publish/awseipext_lambda
 	# Copy in libs
-	cp -r /srv/lambda/venv/lib/python2.7/site-packages/. ./publish/awseipext_lambda/
+	cp -r ./venv/lib/python2.7/site-packages/. ./publish/awseipext_lambda/
 	# Copy in module code
 	cp -r ./awseipext ./publish/awseipext_lambda/
 	mv ./publish/awseipext_lambda/awseipext/aws_lambda/* ./publish/awseipext_lambda/
