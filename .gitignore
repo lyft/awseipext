@@ -1,0 +1,13 @@
+*.swp
+.coverage
+*.pyc
+*.cache/
+.idea/
+*.egg-info/
+htmlcov/
+libs/
+publish/
+venv/
+lambda_configs/
+.ropeproject
+.DS_Store
