@@ -42,3 +42,10 @@ To install the virtualenv and run tests:
 make develop
 make test
 ```
+
+## TODO
+
+This lambda doesn't require any binary dependencies at this point, so it's
+possible to use a virtualenv from basically anywhere, but it's a lot saner to
+use a docker image like [docker lambda](https://github.com/lambci/docker-lambda)
+to build this instead.
