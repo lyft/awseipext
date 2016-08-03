@@ -6,7 +6,7 @@ test: lint
 develop:
 	@echo "--> Installing dependencies"
 	virtualenv venv
-	./venv/bin/pip install -r requirements.txt
+	./venv/bin/pip install -e .
 	./venv/bin/pip install "file://`pwd`#egg=awseipext[tests]"
 	@echo ""
 
