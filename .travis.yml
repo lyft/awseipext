@@ -1,7 +1,14 @@
 language: python
 python:
-  - "2.7"
-# command to install dependencies
-install: "pip install -r requirements.txt"
-# command to run tests
+- '2.7'
+install: pip install -r requirements.txt
 script: make test
+deploy:
+  provider: pypi
+  user: lyftpypi
+  password:
+    secure: Jq15jKK5F+zqNOPmFJr+NJsBJQal2N7bOcf4R4XdHBTDDbPkKyKDP2N83NGd0x9gez1+kmEl9v3s3v8W/Ms03gvpqpDJuiSx2z1XKWQ7Bto/RWwzqwxTpvoAkoi/HWDV3aj5Yrohjlh5FMxXefn2DRR7m2DFTmkX4/387L0epW7OMNj4ff7VDIzRC6D2mNDoz4onp5tSG049S+ENPSfl59Yww+TmBwGTKDk9Gr5rQliOSu66Xy9TSmH8c9Y+ca7TSaNNHcAbYE3sWCdveOuywV/ZPjgB7riYRVeu+GeZmqHi3CXz/khMY6gTSuCSNMvvn4kU+9B4Y966N1aJhIjjSsA7rECRh52/+Sxr2abQ3NHNmbmF1wp/TT6WTA23C9wE4VQgyTg4BgdNgi6oxhV97ECe4HzZFrq0BZgPvPRi/9mTEB/cIU3hSRk0YVH0pi6MFo4+BUnjZj6NkpLg4xvs9q1qhW7GtcacSv8TViCXdeWYdcA6/pmUOdiN1qNauJKyf7uyr5ZcKA52K96Mf3yTVg0Xb6ZxCuxAVUgPYWzl3UzEo3yKoik7dTGHZ0+WGZdLIz8f050JMXxLSCXkS9wp/tmkiS3noUqBCL8OMsjocXuwmkDFSp9wvdJ/Ly3vOI/i5mhrocoyhQOU6k/rspv2tvZ1pDijeNAFh6wz+XR0qSE=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: lyft/awseipext
