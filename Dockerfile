@@ -11,6 +11,6 @@ COPY setup.py /code/awseipext/setup.py
 RUN mkdir -p /code/awseipext/awseipext
 COPY awseipext/__about__.py /code/awseipext/awseipext/__about__.py
 COPY Makefile /code/awseipext/Makefile
-RUN make develop
+RUN cd /code/awseipext && make develop
 COPY . /code/awseipext
 WORKDIR /code/awseipext
