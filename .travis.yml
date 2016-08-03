@@ -1,8 +1,20 @@
+env:
+  - REPO=lyft/awseipext
+
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -f Dockerfile -t $REPO:$COMMIT .
+
+script: docker run $REPO:$COMMIT /bin/sh -c "make test"
+
 language: python
 python:
 - '2.7'
-install: pip install -r requirements.txt
-script: make test
+
 deploy:
   provider: pypi
   user: lyftpypi
