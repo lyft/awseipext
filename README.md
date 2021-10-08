@@ -1,3 +1,5 @@
+⚠️ This repository has been archived and is no longer accepting contributions ⚠️
+
 # awseipext
 
 AWS Lambda that extends the EC2 Elastic IP API
